@@ -1,0 +1,79 @@
+
+//Access folder and files
+
+0B7AS7Vm2QOtbfnAzbTN3bmM0RV9ZZ2ZONGlhSHA5cFNJeG1hZ1MyNHZlMGhjVmlybnZacWc
+
+function myFunction() {
+  
+  var folder = DriveApp.getFoldersByName('test');
+  while (folder.hasNext()) {
+    var myfolder = folder.next();
+    var files = myfolder.getFiles();
+    while (files.hasNext()) {
+      var myfile = files.next();
+      Logger.log(myfile.getName());
+      Logger.log(myfile.getId());
+    }
+  }
+}
+
+//Duplicate files
+
+function myFunction() {
+  var myfile = DriveApp.getFileById('....');
+  myfile.makeCopy('test4');
+  myfile.makeCopy('test5');
+
+}
+
+// Add and Remove files
+
+function myFunction() {
+  var myfile = DriveApp.getFileById('1ztsQlA4G1GiFuCOPkuyf2h35qzBY3l9I');
+  var copyFile = myfile.makeCopy('test6');
+  var rootFolder = DriveApp.getRootFolder();
+  rootFolder.addFile(copyFile);
+  var parentFolder = myfile.getParents().next();
+  parentFolder.removeFile(copyFile);
+}
+
+//Create folder and Share folder 
+
+function myFunction() {
+  var ss = SpreadsheetApp.openById('....');
+  var activeSheet = ss.getActiveSheet();
+  
+  var assignname = activeSheet.setActiveSelection('A2').getValue();
+  var studentname = activeSheet.setActiveSelection('B2').getValue();
+  var class = activeSheet.setActiveSelection('C2').getValue();
+  var email = activeSheet.setActiveSelection('D2').getValue();
+  
+  var folder= assignname+"-"+studentname+"-"+class;
+  
+  var theFolder = DriveApp.createFolder(folder);
+  theFolder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.EDIT);
+  theFolder.addEditor(email);
+  
+}
+
+
+function myFunction() {
+  var ss = SpreadsheetApp.openById('......');
+  var sheet = ss.getActiveSheet();
+  
+  var column = sheet.getRange(2,1,3,4);
+  var rangeValues = column.getValues();
+  var numRows = column.getNumRows();
+
+  for (i=0;i<numRows;i++){
+    var assignname = rangeValues[i][0];
+    var studentname = rangeValues[i][1];
+    var class = rangeValues[i][2];
+    var email = rangeValues[i][3];
+    var folder= assignname+"-"+studentname+"-"+class;
+    var theFolder = DriveApp.createFolder(folder);
+    theFolder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.EDIT);
+    theFolder.addEditor(email);
+  }
+  
+}

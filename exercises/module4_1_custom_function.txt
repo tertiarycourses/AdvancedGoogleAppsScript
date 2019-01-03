@@ -1,0 +1,7 @@
+//custom function
+
+function compute(a,b) {
+  
+  return a*2+3*b;
+  
+}

@@ -1,0 +1,32 @@
+function myFunction() {
+  
+ var folder1 = DriveApp.getFolderById('....');
+ var folder2 = DriveApp.getFoldersByName('test');
+ var theFolder2 = folder2.next();
+ 
+ var files = folder1.getFiles();
+ while (files.hasNext()) {
+      var theFile = files.next();
+      theFolder2.addFile(theFile);
+    }
+}
+
+
+function myFunction() {
+  
+ var folder1 = DriveApp.getFolderById('....');
+ var ss = SpreadsheetApp.openById('....');
+ var sheet = ss.getActiveSheet();
+ var timestamp = sheet.getRange("A3").getValue();
+ var name = sheet.getRange("B3").getValue();
+  
+ folder = timestamp+"-"+name;
+ var folder2 = DriveApp.createFolder(folder); 
+
+ var files = folder1.getFiles();
+ while (files.hasNext()) {
+      var theFile = files.next();
+      folder2.addFile(theFile);
+    }
+  
+}

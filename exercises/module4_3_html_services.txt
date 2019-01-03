@@ -1,0 +1,36 @@
+function onOpen(e) {
+  SpreadsheetApp.getUi().createAddonMenu()
+  .addItem("Add Some Text", "myFunction")
+  .addItem("Use HTML", "showSomething")
+  .addToUi();
+  
+}
+
+function showSomething() {
+  var html = HtmlService.createHtmlOutputFromFile("Page")
+  .setSandboxMode(HtmlService.SandboxMode.IFRAME)
+  .setWidth(300)
+  .setHeight(300);
+  SpreadsheetApp.getUi().showModalDialog(html, "MyDialog");
+}
+  
+function myFunction() {
+  
+  var nextRow = SpreadsheetApp.getActiveSheet().getDataRange().getLastRow()+1;
+  var newDate = Utilities.formatDate(new Date(), "GMT", "yyyy-MM-dd");
+  SpreadsheetApp.getActiveSheet().setActiveSelection("A"+nextRow)
+  .setValue(newDate);
+  
+}
+
+<script>
+  function doSomeThing() {
+  google.script.run.myFunction();
+ </script>
+  
+<div>
+    <h1>Hello World</h1>
+    <input type="button" onclick="doSomehThing()" value="do Something">
+</div>
+
+
