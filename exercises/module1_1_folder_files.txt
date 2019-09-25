@@ -1,7 +1,118 @@
+// Demo 1
+// Access folder and files
+function getTheFiles() {
+  
+  var dApp = DriveApp;
+  var folderIter = dApp.getFoldersByName("Downloaded Pictures");
+  var folder = folderIter.next();
+  // Logger.log(folder);
+  
+  var fileIter = folder.getFiles();
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  var i = 1;
+ 
+  while(fileIter.hasNext()) {
+    var file = fileIter.next();
+    var filename = file.getName();
+    var filesize = file.getSize();
+    // Logger.log(filename);
+    // Logger.log(filesize);
+  }
+ 
+  
+}
 
-//Access folder and files
+// Demo 2 
+// Write data to spreadsheet
+// Need container-bound for getactiveSpreadsheet()
 
-0B7AS7Vm2QOtbfnAzbTN3bmM0RV9ZZ2ZONGlhSHA5cFNJeG1hZ1MyNHZlMGhjVmlybnZacWc
+function getTheFiles() {
+  
+  var dApp = DriveApp;
+  var folderIter = dApp.getFoldersByName("Downloaded Pictures");
+  var folder = folderIter.next();
+  // Logger.log(folder);
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  Logger.log(ss);
+  
+  var fileIter = folder.getFiles();
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  var i = 1;
+ 
+  while(fileIter.hasNext()) {
+    var file = fileIter.next();
+    var filename = file.getName();
+    var filesize = file.getSize()/1024;
+    // Logger.log(filename);
+    // Logger.log(filesize);
+    ss.getRange(i,1).setValue(filename);
+    ss.getRange(i,2).setValue(filesize);
+    i++;
+  }
+ 
+  
+}
+
+// Demo 3
+// makeCopy 
+
+function getTheFiles() {
+  
+  var dApp = DriveApp;
+  var folderIter = dApp.getFoldersByName("Downloaded Pictures");
+  var folder = folderIter.next();
+  // Logger.log(folder);
+  
+  var largeFolder = folder.getFoldersByName("large").next();
+  var smallFolder = folder.getFoldersByName("small").next();
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  Logger.log(ss);
+  
+  var fileIter = folder.getFiles();
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  // var file = fileIter.next();
+  // Logger.log(file);
+  
+  var i = 1;
+ 
+  while(fileIter.hasNext()) {
+    var file = fileIter.next();
+    var filename = file.getName();
+    var filesize = file.getSize()/1024;
+    // Logger.log(filename);
+    // Logger.log(filesize);
+    ss.getRange(i,1).setValue(filename);
+    ss.getRange(i,2).setValue(filesize);
+    i++;
+    
+    if (filesize>7) {
+      file.makeCopy(largeFolder);
+    } else {
+      file.makeCopy(smallFolder);
+    }
+ 
+  }
+}
+
+// Demo 4
+// getId
 
 function myFunction() {
   
@@ -17,6 +128,7 @@ function myFunction() {
   }
 }
 
+// Demo 5
 //Duplicate files
 
 function myFunction() {
@@ -40,13 +152,12 @@ function myFunction() {
 //Create folder and Share folder 
 
 function myFunction() {
-  var ss = SpreadsheetApp.openById('....');
-  var activeSheet = ss.getActiveSheet();
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
-  var assignname = activeSheet.setActiveSelection('A2').getValue();
-  var studentname = activeSheet.setActiveSelection('B2').getValue();
-  var class = activeSheet.setActiveSelection('C2').getValue();
-  var email = activeSheet.setActiveSelection('D2').getValue();
+  var assignname = ss.setActiveSelection('A2').getValue();
+  var studentname = ss.setActiveSelection('B2').getValue();
+  var class = ss.setActiveSelection('C2').getValue();
+  var email = ss.setActiveSelection('D2').getValue();
   
   var folder= assignname+"-"+studentname+"-"+class;
   
@@ -56,6 +167,7 @@ function myFunction() {
   
 }
 
+//Exercise
 
 function myFunction() {
   var ss = SpreadsheetApp.openById('......');
