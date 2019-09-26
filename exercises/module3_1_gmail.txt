@@ -1,8 +1,0 @@
-//query gmail
-
-function myFunction() {
-  var thread = GmailApp.search('new year');
-  for (i=0;i<10;i++) {
-    Logger.log(thread[i].getFirstMessageSubject());
-  }
-}

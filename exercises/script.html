@@ -1,0 +1,14 @@
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      
+      function doStaff() {   
+         var fname = document.getElementById("fname").value;
+         var lname = document.getElementById("lname").value;
+         var application = document.getElementById("application").value;
+         google.script.run.userClicked(fname,lname,application);  
+         document.getElementById("fname").value = "";
+         document.getElementById("lname").value = "";
+         document.getElementById("application").value = "";
+      }  
+    </script>  

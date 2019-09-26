@@ -1,5 +1,6 @@
 // Demo 1
-// Access folder and files
+// Access folders and files
+
 function getTheFiles() {
   
   var dApp = DriveApp;
@@ -67,7 +68,7 @@ function getTheFiles() {
 }
 
 // Demo 3
-// makeCopy 
+// Duplicate files
 
 function getTheFiles() {
   
@@ -111,33 +112,7 @@ function getTheFiles() {
   }
 }
 
-// Demo 4
-// getId
-
-function myFunction() {
-  
-  var folder = DriveApp.getFoldersByName('test');
-  while (folder.hasNext()) {
-    var myfolder = folder.next();
-    var files = myfolder.getFiles();
-    while (files.hasNext()) {
-      var myfile = files.next();
-      Logger.log(myfile.getName());
-      Logger.log(myfile.getId());
-    }
-  }
-}
-
-// Demo 5
-//Duplicate files
-
-function myFunction() {
-  var myfile = DriveApp.getFileById('....');
-  myfile.makeCopy('test4');
-  myfile.makeCopy('test5');
-
-}
-
+// Demo 4 (Optional)
 // Add and Remove files
 
 function myFunction() {
@@ -149,17 +124,17 @@ function myFunction() {
   parentFolder.removeFile(copyFile);
 }
 
-//Create folder and Share folder 
+// Demo 5
+// Create folder and Share folder 
 
 function myFunction() {
   var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
-  var assignname = ss.setActiveSelection('A2').getValue();
-  var studentname = ss.setActiveSelection('B2').getValue();
-  var class = ss.setActiveSelection('C2').getValue();
-  var email = ss.setActiveSelection('D2').getValue();
+  var studentname = ss.getRange('B2').getValue();
+  var class = ss.getRange('C2').getValue();
+  var email = ss.getRange('D2').getValue();
   
-  var folder= assignname+"-"+studentname+"-"+class;
+  var folder = studentname + "-" + class;
   
   var theFolder = DriveApp.createFolder(folder);
   theFolder.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.EDIT);

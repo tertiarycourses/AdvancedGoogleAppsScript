@@ -1,0 +1,146 @@
+// Demo 1
+// Basic HTML Services
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+  
+}
+
+// Demo 2
+// Demo script.run
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+}
+
+function doSomething() {
+  Logger.log('I was called!');
+}
+
+// Demo3
+// Add button interactivity
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+  
+}
+
+function userClicked() {
+  Logger.log("Someone clicked the Button");
+}
+
+// Demo 4
+// Add text input
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+}
+function userClicked(name) {
+  Logger.log(name + " clicked the Button");
+}
+
+// Demo 5
+// Clear input
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+}
+function userClicked(name) {
+  
+  var url = "...;
+  var ss = SpreadsheetApp.openByUrl(url).getActiveSheet();
+  
+  ss.appendRow([name])
+  
+  //Logger.log(name + " clicked the Button");
+}
+
+// Demo 6
+// Save to spreadsheet
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+}
+function userClicked(name) {
+  
+  var url = ".....;
+  var ss = SpreadsheetApp.openByUrl(url).getActiveSheet();
+  
+  ss.appendRow([name])
+  
+  //Logger.log(name + " clicked the Button");
+}
+
+// Exercise 
+
+function doGet() {
+  return HtmlService.createHtmlOutputFromFile('index.html');
+}
+function userClicked(fname,lname,application) {
+  
+  var url = "https://docs.google.com/spreadsheets/d/12Z3Hissj_tewAd3x3Ew5PNOKiFq-UkNTZuKd-Ftu5LM/edit#gid=0";
+  var ss = SpreadsheetApp.openByUrl(url).getActiveSheet();
+  
+  ss.appendRow([fname,lname,application])
+  
+}
+
+// Demo 7
+// Templated HTML - printing scriptlet
+
+function doGet() {
+  return HtmlService
+      .createTemplateFromFile('index.html')
+      .evaluate();
+}
+
+// Demo 8
+// Templated HTML - standard scriptlet
+
+function doGet() {
+  return HtmlService
+      .createTemplateFromFile('index.html')
+      .evaluate();
+}
+
+
+// Demo 9
+// Pull data from Spreadsheet to HTML
+
+function doGet() {
+  return HtmlService
+      .createTemplateFromFile('index.html')
+      .evaluate();
+}
+
+function getData() {
+  return SpreadsheetApp
+      .openById('1234567890abcdefghijklmnopqrstuvwxyz')
+      .getActiveSheet()
+      .getDataRange()
+      .getValues();
+}
+
+// Demo 10
+// Separate HTML, CSS and Javascript
+
+function doGet(request) {
+  return HtmlService.createTemplateFromFile('index.html')
+      .evaluate();
+}
+
+function userClicked(fname,lname,application) {
+  
+  var url = "https://docs.google.com/spreadsheets/d/1bghvct5AtykEPEsfQbQ9E3ciePIl3o-lj3nMrR0zbZk/edit#gid=0";
+  var ss = SpreadsheetApp.openByUrl(url).getActiveSheet();
+  
+  ss.appendRow([fname,lname,application])
+  
+}
+
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename)
+      .getContent();
+}
+
+

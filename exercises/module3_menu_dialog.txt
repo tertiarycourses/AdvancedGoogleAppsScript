@@ -1,0 +1,80 @@
+// Demo 1
+// Custom MEnu
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+      .createMenu('Custom Menu')
+      .addItem('First item', 'menuItem1')
+      .addSeparator()
+      .addSubMenu(ui.createMenu('Sub-menu')
+          .addItem('Second item', 'menuItem2'))
+      .addToUi();
+}
+
+function menuItem1() {
+  SpreadsheetApp.getUi() // Or DocumentApp or FormApp.
+     .alert('You clicked the first menu item!');
+}
+
+function menuItem2() {
+  SpreadsheetApp.getUi() // Or DocumentApp or FormApp.
+     .alert('You clicked the second menu item!');
+}
+
+// Demo 2
+// Add on Menu
+
+function onOpen(e) {
+  SpreadsheetApp.getUi().createAddonMenu()
+  .addItem("Add Some Text", "myFunction")
+  .addToUi();
+  
+}
+function myFunction() {
+  
+  var nextRow = SpreadsheetApp.getActiveSheet().getDataRange().getLastRow()+1;
+  var newDate = Utilities.formatDate(new Date(), "GMT", "yyyy-MM-dd");
+  SpreadsheetApp.getActiveSheet().setActiveSelection("A"+nextRow)
+  .setValue(newDate);
+  
+}
+
+// Demo 3 
+// HTML Services Dialog
+
+function onOpen() {
+  SpreadsheetApp.getUi() 
+      .createMenu('Dialog')
+      .addItem('Open', 'openDialog')
+      .addToUi();
+}
+
+function openDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('Index');
+  SpreadsheetApp.getUi() 
+      .showModalDialog(html, 'Dialog title');
+}
+
+
+// Exercise: HTML Services Dialog 
+
+function onOpen() {
+  SpreadsheetApp.getUi() 
+      .createMenu('Dialog')
+      .addItem('Open', 'openDialog')
+      .addToUi();
+}
+
+function openDialog() {
+  var html = HtmlService.createHtmlOutputFromFile('index.html');
+  SpreadsheetApp.getUi() 
+      .showModalDialog(html, 'Dialog title');
+}
+
+function userClicked(fname,lname,application) {
+  
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  ss.appendRow([fname,lname,application])
+  
+}

@@ -1,0 +1,293 @@
+// Module 2
+// Demo 1
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+  </body>
+</html>
+
+
+// Demo 2
+// Demo script.run
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <script>
+      google.script.run.doSomething();
+    </script>
+  </head>
+</html>
+
+// Demo 3
+// Add button interactivity
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <button id = "btn">Run It!</button>
+    
+    
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      function doStaff() {   
+         google.script.run.userClicked();    
+      }  
+    </script>    
+  </body>
+  
+</html>
+
+// Demo 4
+// Add text input
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <label>Name: </label><input type="text" id="username">
+    <button id = "btn">Run It!</button>
+    
+    
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      
+      function doStaff() {   
+         var uname = document.getElementById("username").value;
+         
+         google.script.run.userClicked(uname);    
+      }  
+    </script>    
+  </body>
+  
+</html>
+
+// Demo 5 
+// Clear input
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <label>Name: </label><input type="text" id="username">
+    <button id = "btn">Run It!</button>
+    
+    
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      
+      function doStaff() {   
+         var uname = document.getElementById("username").value;
+         google.script.run.userClicked(uname);  
+         document.getElementById("username").value = "";
+      }  
+    </script>    
+  </body>
+  
+</html>
+
+// Demo 6 
+// Save to spreadsheet
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <label>Name: </label><input type="text" id="username">
+    <button id = "btn">Run It!</button>
+    
+    
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      
+      function doStaff() {   
+         var uname = document.getElementById("username").value;
+         google.script.run.userClicked(uname);  
+         document.getElementById("username").value = "";
+      }  
+    </script>    
+  </body>
+  
+</html>
+
+//Exercise: HTML Services
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      .form-row {
+      margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <div class='form-row'>
+       <label>First Name: </label><input type="text" id="fname">
+    </div>
+    <div class='form-row'>
+       <label>Last Name: </label><input type="text" id="lname">
+    </div>
+    <div class='form-row'>
+    <label>Application: </label>
+    <select id="application">
+      <option>Google Sheet</option>
+      <option>Excel</option>
+      <option>Numbers</option>
+    </select>
+    </div>
+    <div class='form-row'>
+    <button id = "btn">Run It!</button>
+    </div>
+    
+    <script>
+      document.getElementById("btn").addEventListener("click",doStaff);
+      
+      
+      function doStaff() {   
+         var fname = document.getElementById("fname").value;
+         var lname = document.getElementById("lname").value;
+         var application = document.getElementById("application").value;
+         google.script.run.userClicked(fname,lname,application);  
+         document.getElementById("fname").value = "";
+         document.getElementById("lname").value = "";
+         document.getElementById("application").value = "";
+      }  
+    </script>    
+  </body>
+  
+</html>
+
+// Demo 7
+// Templated HTML - Printing scriptles
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    Hello, World! The time is <?= new Date() ?>.
+  </body>
+</html>
+
+// Demo 8
+// Templated HTML - Standard scriptles
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <?= 'My favorite Google products:' ?>
+    <? var data = ['Gmail', 'Docs', 'Android'];
+      for (var i = 0; i < data.length; i++) { ?>
+        <b><?= data[i] ?></b>
+    <? } ?>
+  </body>
+</html>
+
+
+// Demo 9
+// Pull data from Spreadsheet to HTML
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    <? var data = getData(); ?>
+    <table>
+      <? for (var i = 0; i < data.length; i++) { ?>
+        <tr>
+          <? for (var j = 0; j < data[i].length; j++) { ?>
+            <td><?= data[i][j] ?></td>
+          <? } ?>
+        </tr>
+      <? } ?>
+    </table>
+  </body>
+</html>
+
+// Demo 10
+// Separate out HTML, CSS and Javascript
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include("style.html") ?>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <div class='form-row'>
+       <label>First Name: </label><input type="text" id="fname">
+    </div>
+    <div class='form-row'>
+       <label>Last Name: </label><input type="text" id="lname">
+    </div>
+    <div class='form-row'>
+    <label>Application: </label>
+    <select id="application">
+      <option>Google Sheet</option>
+      <option>Excel</option>
+      <option>Numbers</option>
+    </select>
+    </div>
+    <div class='form-row'>
+    <button id = "btn">Run It!</button>
+    </div>
+    
+    <?!= include("script.html") ?>
+  </body>
+  
+</html>
+
+
+
+// Module 3
+
+// Demo 1
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+    Hello, World!
+    <input type="button" value="Close"
+        onclick="google.script.host.close()" />
+  </body>
+</html>
+
+
+
+
