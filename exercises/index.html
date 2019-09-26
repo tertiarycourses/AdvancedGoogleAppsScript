@@ -224,7 +224,7 @@
   </head>
   <body>
     <? var data = getData(); ?>
-    <table>
+    <table border=1>
       <? for (var i = 0; i < data.length; i++) { ?>
         <tr>
           <? for (var j = 0; j < data[i].length; j++) { ?>
@@ -289,5 +289,40 @@
 </html>
 
 
+// Exercise: HTML Dialog
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include("style.html") ?>
+  </head>
+  <body>
+    <h1>Hello, World!</h1>
+    <div class='form-row'>
+       <label>First Name: </label><input type="text" id="fname">
+    </div>
+    <div class='form-row'>
+       <label>Last Name: </label><input type="text" id="lname">
+    </div>
+    <div class='form-row'>
+    <label>Application: </label>
+    <select id="application">
+      <option>Google Sheet</option>
+      <option>Excel</option>
+      <option>Numbers</option>
+    </select>
+    </div>
+    <div class='form-row'>
+    <button id = "btn">Run It!</button>
+    <button id = "close">Close</button>
+    </div>
+    
+    <?!= include("script.html") ?>
+    
+
+  </body>
+  
+</html>
 
 

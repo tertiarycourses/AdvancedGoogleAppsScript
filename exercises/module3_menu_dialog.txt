@@ -50,13 +50,14 @@ function onOpen() {
 }
 
 function openDialog() {
-  var html = HtmlService.createHtmlOutputFromFile('Index');
+  var html = HtmlService.createHtmlOutputFromFile('index.html');
   SpreadsheetApp.getUi() 
       .showModalDialog(html, 'Dialog title');
 }
 
 
-// Exercise: HTML Services Dialog 
+// Demo 4
+// HTML Dialog with firstnam,last name and applications
 
 function onOpen() {
   SpreadsheetApp.getUi() 
@@ -78,3 +79,34 @@ function userClicked(fname,lname,application) {
   ss.appendRow([fname,lname,application])
   
 }
+
+// Exercise: HTML Dialog with close button
+
+function onOpen() {
+  SpreadsheetApp.getUi()
+  .createMenu('Dialog')
+  .addItem('Open','openDialog')
+  .addToUi();
+  
+}
+
+function openDialog()  { 
+  var html = HtmlService.createTemplateFromFile('index.html').evaluate();
+  SpreadsheetApp.getUi()
+  .showModalDialog(html, 'Enter Your Info');
+  
+}
+
+function doSomething(fname,lname,app) {
+  
+
+  var ss = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  ss.appendRow([fname,lname,app]);
+  //Logger.log(name + ' have clicked the button');
+}
+
+function include(filename) {
+  return HtmlService.createHtmlOutputFromFile(filename).getContent();
+}
+
+
